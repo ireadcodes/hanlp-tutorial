@@ -1,4 +1,4 @@
-from mining.word.new_word_discover import NewWordDiscover
+from hanlp.mining.word.new_word_discover import NewWordDiscover
 
 
 def test_extract_new_word():
