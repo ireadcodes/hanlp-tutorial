@@ -37,6 +37,7 @@ class TfIdf:
                 df[term] = t + 1
         idf = dict()
         for term, f in df.items():
+            # 计算idf值，n代表文档数量，f代表包含该词条的文档数量
             idf[term] = math.log(n / f) + a
         return idf
 

@@ -11,6 +11,7 @@ class TfIdfCounter:
         self.idf: Dict[str, float] = dict()
 
     def add(self, uuid: str, words: List[str]):
+        # 这里是计算每篇文章的中的词频
         tf = TfIdf.tf_natural(words)
         # 这里使用tf_map的键存储词条相当于对同一篇文章中的相同词汇去重了
         self.tf_map[uuid] = tf
