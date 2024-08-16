@@ -51,6 +51,7 @@ class TextRankKeyword:
                     size = len(words[element])
                     if key == element or size == 0:
                         continue
+                    # 重点：中心词(key)的权重与邻居词的链接总数(size)成反比，与邻居词的权重(score[element])成正比
                     m[key] = m[key] + self.d / size * score.get(element, 0)
                 max_diff = max(max_diff, abs(m[key] - score.get(key, 0)))
             # 更新权重
