@@ -10,7 +10,6 @@ from typing import Dict
 # 字典树的节点实现
 class Node(object):
     def __init__(self, value: str):
-        # 保存"自然"时，_children的键是"自"，值是"然"的Node对象
         self._children: Dict[str, Node] = {}
         self._value: str = value
 
@@ -55,6 +54,8 @@ class Trie(Node):
 if __name__ == '__main__':
     trie = Trie()
     # 增
+    # trie对象中_children的键是"自"，值是"然"的Node对象
+    # "自"Node的_value是None，"然"Node的_value是nature
     trie['自然'] = 'nature'  # __setitem__
     trie['自然人'] = 'human'
     trie['自然语言'] = 'language'
