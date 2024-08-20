@@ -1,3 +1,6 @@
+from hanlp.mining.phrase.mutual_information_entropy_phrase_extractor import MutualInformationEntropyPhraseExtractor
+
+
 def test_phrase_extractor():
     text = "算法工程师\n" + \
            "算法（Algorithm）是一系列解决问题的清晰指令，也就是说，能够对一定规范的输入，在有限时间内获得所要求的输出。" + \
@@ -53,6 +56,8 @@ def test_phrase_extractor():
                      ["传送", "领域", "调制", "解调", "信道", "均衡", "信号", "检测", "网络", "优化", "信号", "分解"],
                      ["数据挖掘", "互联网", "搜索", "算法", "成为", "热门", "方向"],
                      ["算法", "工程师", "逐渐", "人工智能", "方向", "发展"]]
+    extractor = MutualInformationEntropyPhraseExtractor()
+    extractor.extract_phrase(sentence_list, 5)
 
 
 if __name__ == '__main__':

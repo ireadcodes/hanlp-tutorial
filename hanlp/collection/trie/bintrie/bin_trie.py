@@ -59,3 +59,12 @@ class BinTrie(BaseNode):
 
     def get_child(self, c: str):
         return self.child[ord(c)]
+
+    def entry_set(self):
+        result = set()
+        s = ''
+        for node in self.child:
+            if node is None:
+                continue
+            node.walk(s, result)
+        return result

@@ -13,9 +13,9 @@ class ArrayTool:
         while low <= high:
             mid = (low + high) >> 1
             mid_node = branches[mid]
-            if mid_node.c < node.c:
+            if ord(mid_node.c) < ord(node.c):
                 low = mid + 1
-            elif mid_node.c > node.c:
+            elif ord(mid_node.c) > ord(node.c):
                 high = mid - 1
             else:
                 return mid
@@ -30,9 +30,9 @@ class ArrayTool:
         while low <= high:
             mid = (low + high) >> 1
             mid_node = branches[mid]
-            if mid_node.c < c:
+            if ord(mid_node.c) < ord(c):
                 low = mid + 1
-            elif mid_node.c > c:
+            elif ord(mid_node.c) > ord(c):
                 high = mid - 1
             else:
                 return mid

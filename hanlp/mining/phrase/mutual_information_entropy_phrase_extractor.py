@@ -8,6 +8,9 @@ class MutualInformationEntropyPhraseExtractor:
     def __init__(self):
         pass
 
-    def extract_phrase(self, text: str, size: int) -> List[str]:
+    def extract_phrase(self, sentence_list: List[List[str]], size: int) -> List[str]:
         phrase_list = list()
         occurrence = Occurrence()
+        for sentence in sentence_list:
+            occurrence.add_all(sentence)
+        occurrence.compute()
