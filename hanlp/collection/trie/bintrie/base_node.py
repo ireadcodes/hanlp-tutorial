@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Set, Dict, Any
+from typing import List, Set
 
 
 class Status(Enum):
@@ -44,7 +44,7 @@ class BaseNode:
             new_child = [BaseNode()] * (len(self.child) + 1)
             insert = -(index + 1)
             new_child[:insert] = self.child[:insert]
-            new_child[insert+1:] = self.child[insert:]
+            new_child[insert + 1:] = self.child[insert:]
             new_child[insert] = node
             self.child = new_child
             add = True
@@ -59,13 +59,19 @@ class BaseNode:
             return None
         return self.child[index]
 
-    def walk(self, s: str, entry_set: Set[Dict[str, Any]]):
+    def walk(self, s: str, entry_set: Set['TrieEntry']):
         s += self.c
         if self.status == Status.WORD_MIDDLE_2 or self.status == Status.WORD_END_3:
-            entry_set.add({s: self.value})
+            entry_set.add(TrieEntry(s, self.value))
         if self.child is None:
             return
         for node in self.child:
             if node is None:
                 continue
             node.walk(s, entry_set)
+
+
+class TrieEntry:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
