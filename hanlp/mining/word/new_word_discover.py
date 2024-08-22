@@ -49,7 +49,7 @@ class NewWordDiscover:
         # 计算互信息
         for info in word_candidates.values():
             info.compute_aggregation(word_candidates)
-        # 过滤
+        # 过滤：item.p是词的频率，item.entropy是信息熵，item.aggregation是互信息
         condition = lambda item: len(item.text.strip()) >= 2 and item.p >= self.min_freq and item.entropy >= self.min_entropy and item.aggregation >= self.min_aggregation
         word_info_list = filter(condition, word_candidates.values())
         # 排序
