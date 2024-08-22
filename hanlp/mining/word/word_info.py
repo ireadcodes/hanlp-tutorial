@@ -35,6 +35,9 @@ class WordInfo:
             storage[c] = freq
 
     def compute_probability_entropy(self, length):
+        # self.text = '演'
+        # self.left = {'\x00': [2], '上': [1], '卫': [2], '国': [1], '教': [4], '至': [1], '躁': [1]}
+        # self.right = {'\x00': [1], '义': [1], '军': [1], '回': [1], '士': [2], '抱': [1], '来': [1], '武': [2], '膝': [1], '阵': [1]}
         self.p = self.frequency / length
         self.left_entropy = self.compute_entropy(self.left)
         self.right_entropy = self.compute_entropy(self.right)
@@ -43,6 +46,7 @@ class WordInfo:
     def compute_entropy(self, storage):
         res = 0.0
         for value in storage.values():
+            # 相邻词的频数除以本词频数
             pp = value[0] / self.frequency
             # 计算信息熵
             res -= pp * math.log(pp)

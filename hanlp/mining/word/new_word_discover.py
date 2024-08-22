@@ -18,6 +18,11 @@ class NewWordDiscover:
         self.min_aggregation = min_aggregation
 
     def discover(self, docs, size):
+        assert docs[:10] == ['『三国演义/作者:罗贯中』\n', '\n', '正文\n', '\n',
+                             '第001回 宴桃园豪杰三结义 斩黄巾英雄首立功\n',
+                             '\u3000\u3000滚滚长江东逝水，浪花淘尽英雄。是非成败转头空。\n', '\n',
+                             '\u3000\u3000青山依旧在，几度夕阳红。白发渔樵江渚上，惯\n', '\n',
+                             '\u3000\u3000看秋月春风。一壶浊酒喜相逢。古今多少事，都付\n']
         word_candidates = dict()
         total_length = 0
         delimiter = re.compile(r"[\s\d,.<>/?:;'\"\[\]{}()\|~!@#$%^&*\-_=+，。《》、？：；“”‘’｛｝【】（）…￥！—┄－]+")
@@ -37,6 +42,7 @@ class NewWordDiscover:
                         info = word_candidates[word]
                     info.update(doc[i - 1] if i != 0 else '\0', doc[j] if j < doc_length else '\0')
             total_length += doc_length
+        assert list(word_candidates.keys())[:10] == ['『', '『三', '『三国', '『三国演', '三', '三国', '三国演', '三国演义', '国', '国演']
         # 计算信息熵
         for info in word_candidates.values():
             info.compute_probability_entropy(total_length)
