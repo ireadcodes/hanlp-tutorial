@@ -53,9 +53,11 @@ class WordInfo:
         return res
 
     def compute_aggregation(self, word_cands):
+        # 单个字
         if len(self.text) == 1:
             self.aggregation = math.sqrt(self.p)
             return
+        # 多个字
         for i in range(1, len(self.text)):
             # 互信息计算，为啥这里没用log？
             res = self.p / word_cands[self.text[0:i]].p / word_cands[self.text[i:]].p
